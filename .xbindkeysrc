@@ -1,0 +1,12 @@
+#config
+# Increase volume
+"pamixer --increase 5"
+   XF86AudioRaiseVolume
+
+# Decrease volume
+"pamixer --decrease 5"
+   XF86AudioLowerVolume
+
+#Mute or Unmute check "man pamixer" for "-t"
+"pamixer -t"
+   XF86AudioMute
