@@ -2,13 +2,9 @@
 # /usr/bin/i3exit
 
 
-lock() {
-    blurlock
-}
-
 case "$1" in
     lock)
-        lock
+      i3lock -i ~/Downloads/lock_screen.png 
         ;;
     logout)
         i3-msg exit
