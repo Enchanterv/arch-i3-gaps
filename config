@@ -207,14 +207,33 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# shut down, restart and locking features
+bindsym $mod+Delete mode "$mode_system"
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {  position top
 
-        status_command i3status         
- colors {
+bar {   position top
+ 	font pango:Source Sans Pro-10 9
+	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+  colors {
     separator #268bd2
-    background #002b36
+    #background #002b36
     statusline #839496
     focused_workspace #fdf6e3 #6c71c4 #fdf6e3
     active_workspace #fdf6e3 #6c71c4 #fdf6e3
@@ -222,3 +241,7 @@ bar {  position top
     urgent_workspace #d33682 #d33682 #fdf6e3
   }
 }
+client.focused #6c71c4 #6c71c4 #fdf6e3 #6c71c4
+client.focused_inactive #073642 #073642 #eee8d5 #6c71c4
+client.unfocused #073642 #073642 #93a1a1 #586e75
+client.urgent #d33682 #d33682 #fdf6e3 #dc322f
